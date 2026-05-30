@@ -1,0 +1,54 @@
+[project]
+name = "mibel-risk"
+version = "0.1.0"
+description = "Market risk management for MIBEL energy portfolios: VaR, Expected Shortfall, and backtesting"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+license = { text = "MIT" }
+authors = [{ name = "Carlo Vilches" }]
+keywords = ["electricity", "risk", "VaR", "expected-shortfall", "backtesting", "MIBEL", "OMIP"]
+
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "scipy>=1.13",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+notebooks = ["jupyterlab>=4.0", "ipykernel>=6.29"]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+    "mypy>=1.10",
+]
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mibel_risk"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true
+files = ["src/mibel_risk"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: long-running tests",
+    "monte_carlo: tests exercising stochastic Monte Carlo convergence",
+]
