@@ -16,7 +16,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-notebooks = ["jupyterlab>=4.0", "ipykernel>=6.29"]
+notebooks = ["jupyterlab>=4.0", "ipykernel>=6.29", "pyarrow>=15.0"]
 dev = [
     "pytest>=8.0",
     "pytest-cov>=5.0",
